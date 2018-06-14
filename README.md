@@ -186,10 +186,10 @@ to be able to fully use our SD card
 Now that the board is ready and easily accessible it's finally time to upload Arduino Sketches who implement this IPC (making some changes to .c files we discussed at the beginning).  
 ### Sketches aim
 The main target of this project is the IPC, yet to simulate a real application each Arduino Sketch has its own simple aim.
--  [__nodoWR_sensor.ino__](nodoWR_sensor.cpp "sensor Sketch code") it's a sketch who control an [ultrasonic module HC-SR04](https://cdn.sparkfun.com/datasheets/Sensors/Proximity/HCSR04.pdf). Its measurements will be send to a shared memory calling the Message Handler with `_sensor` as first argument and the measurement as second one.
+-  [__nodoWR_sensor.ino__](Sketch/nodoWR_sensor.cpp "sensor Sketch code") it's a sketch who control an [ultrasonic module HC-SR04](https://cdn.sparkfun.com/datasheets/Sensors/Proximity/HCSR04.pdf). Its measurements will be send to a shared memory calling the Message Handler with `_sensor` as first argument and the measurement as second one.
 
-- [__nodoRD_led.ino__](noodRD_led.cpp "led Sketch code") it's a sketch who control a [red led](https://www.exploringarduino.com/parts/red-led/). It calls the Message Handler to receive data from `_sensor` shared memory. If this value is < 20cm it swith the led on.
-- [__nodoRD_motor.ino__](nodoRD_motor.cpp "motors Sketch code") it's a sketch who control the motors of the [Robot Car Chassis for Arduino](https://www.ebay.com/p/1set-2wd-Mini-DIY-Kit-Round-Double-deck-Smart-Robot-Car-Chassis-for-Arduino/2145354338?iid=182070721182&_trkparms=aid%3D555018%26algo%3DPL.SIM%26ao%3D2%26asc%3D52569%26meid%3D1260d361bc8448fcbd80d2d70ab0b2ff%26pid%3D100005%26rk%3D4%26rkt%3D12%26sd%3D182106082960%26itm%3D182070721182&_trksid=p2047675.c100005.m1851). It calls the Message Handler to receive data from `_sensor` shared memory. If this value is < 20cm the robot goes backward else it keeps on going forward.
+- [__nodoRD_led.ino__](Sketch/noodRD_led.cpp "led Sketch code") it's a sketch who control a [red led](https://www.exploringarduino.com/parts/red-led/). It calls the Message Handler to receive data from `_sensor` shared memory. If this value is < 20cm it swith the led on.
+- [__nodoRD_motor.ino__](Sketch/nodoRD_motor.cpp "motors Sketch code") it's a sketch who control the motors of the [Robot Car Chassis for Arduino](https://www.ebay.com/p/1set-2wd-Mini-DIY-Kit-Round-Double-deck-Smart-Robot-Car-Chassis-for-Arduino/2145354338?iid=182070721182&_trkparms=aid%3D555018%26algo%3DPL.SIM%26ao%3D2%26asc%3D52569%26meid%3D1260d361bc8448fcbd80d2d70ab0b2ff%26pid%3D100005%26rk%3D4%26rkt%3D12%26sd%3D182106082960%26itm%3D182070721182&_trksid=p2047675.c100005.m1851). It calls the Message Handler to receive data from `_sensor` shared memory. If this value is < 20cm the robot goes backward else it keeps on going forward.
 
 ![Circuit_scheme](img/Circuit_scheme.png "Hardware implementation")
 (In this image is rappresented the circuit for this project with an Arduino board, yet I uses a Galileo board as you can see)
@@ -233,7 +233,7 @@ Thanks to [__Arduino IDE__](https://www.arduino.cc/en/Main/Software)
   Finally when I have find out the _hardware_ folder I copied it on Galileo inside `~/arduino/` directory.   
 
 - __Set the SConstruct file__  
-  Last thing to do is set corect paths inside [SConstruct](SConstruct "SConstruct template") file for includes and libraries.  
+  Last thing to do is set corect paths inside [SConstruct](Sketch/SConstruct "SConstruct template") file for includes and libraries.  
   Modifing last line (giving our .cpp files and any options we want)
  ```Python
   env.Program(‘sketch.elf’, [ c/c++ files here, ‘libcore.a’], CCFLAGS=output, LIBS=[‘pthread’, ‘rt’])
@@ -282,7 +282,7 @@ and when they are utilized
 ```
 
 ## Run the whole job
-Last thing to do is to set up a script who run all sketches as a multi thread application. That's what [Start.cpp](Start.cpp "Start.cpp code") does. Prompting on Galileo
+Last thing to do is to set up a script who run all sketches as a multi thread application. That's what [Start.cpp](Sketch/Start.cpp "Start.cpp code") does. Prompting on Galileo
 ```bash
 ~/arduino/Start
 ```
