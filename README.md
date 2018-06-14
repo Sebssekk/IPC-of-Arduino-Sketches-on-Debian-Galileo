@@ -9,12 +9,12 @@ The aim of this project, as described by title, is to set up an IPC in order to 
 In This Repository is also stored [this](IPC_C_Code "C Code directory") directory where it's possible to find the starting IPC code (in plain C).  
 I didn't want a node of the project (I mean one of the Arduino Sketches) could directly access to shared memory space, that's why I implemented a [Message Handler](IPC_C_Code/Message_Handler.c "Message Handler"). Each node can make a system call to the Message Handler who'll answer it according to passed parameters.
 
-- __To write__ (check [here](IPC_C_Code/NodoWR.c "Writer Node")) a node calls the Handler with 2 arguments, the name of target memory space and what to write in  
+- __To write__ (check [here](IPC_C_Code/nodoWR.c "Writer Node")) a node calls the Handler with 2 arguments, the name of target memory space and what to write in  
 ```C
 system(./Message_Handler target_WR foo )
 
 ```
-- __To Read__ (check [here](IPC_C_Code/NodoRD.c "Reader Node")) a node calls the Handler with 1 arguments, the name of memory it wants to read, than _receive_ a message from Handler with asked data  
+- __To Read__ (check [here](IPC_C_Code/nodoRD.c "Reader Node")) a node calls the Handler with 1 arguments, the name of memory it wants to read, than _receive_ a message from Handler with asked data  
 ``````C
  system(./Message_Handler target_RD )
 
