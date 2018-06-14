@@ -150,7 +150,8 @@ Now I've an IP address I can refer to, it's time to set up an SSH connection pro
 ssh root@192.168.178.116
 
 ``````
-Giving the password "_root_ "
+Giving the password "_root_ "  
+
 ![Galileo_prompt](img/Galileo_prompt.png "ssh access screenshot")
 
 ### Expanding the filesystem
