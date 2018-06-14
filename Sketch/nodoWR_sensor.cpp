@@ -1,9 +1,4 @@
-/* HC-SR04 Ultrasound Sensor Connection with Arduino:
-VCC  => Arduino +5v
-GND  => Arduino GND
-Echo => Digital Pin 11
-Trig => Digital Pin 12
-*/
+
 #include <Arduino.h>
 
 #include <unistd.h>
